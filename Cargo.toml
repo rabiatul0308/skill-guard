@@ -1,0 +1,16 @@
+[package]
+name = "skill-guard"
+version = "0.1.0"
+edition = "2021"
+description = "Hardened AI Skill Auditor & Anti-Bypass Integrity Guard"
+
+[dependencies]
+sha2 = "0.10"
+walkdir = "2.5"
+
+[profile.release]
+opt-level = "z"     # Ukuran biner .exe super kecil (< 3 MB)
+lto = true          # Link-Time Optimization: menyatukan kode & mempersulit reverse engineering
+codegen-units = 1   # Optimasi maksimal
+panic = "abort"     # Langsung matikan proses tanpa stack trace yang membocorkan struktur internal
+strip = true        # Menghapus seluruh nama fungsi & debug symbols dari file .exe
